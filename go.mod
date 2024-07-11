@@ -1,4 +1,4 @@
-module github.com/trzsz/trzsz-ssh
+module github.com/abakum/trzsz-ssh
 
 go 1.21
 
@@ -15,7 +15,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.15
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pquerna/otp v1.4.0
-	github.com/skeema/knownhosts v1.2.2
+	github.com/abakum/knownhosts v1.2.2
 	github.com/stretchr/testify v1.8.4
 	github.com/trzsz/go-arg v1.5.3
 	github.com/trzsz/go-socks5 v0.1.0

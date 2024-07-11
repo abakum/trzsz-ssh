@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: tssh
 Upstream-Contact: Lonny Wong <lonnywong@qq.com>
-Source: https://github.com/trzsz/trzsz-ssh
+Source: https://github.com/abakum/trzsz-ssh
 
 Files: *
 Copyright: 2023-2024 The Trzsz SSH Authors.

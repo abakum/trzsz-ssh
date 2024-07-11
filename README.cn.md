@@ -1,7 +1,7 @@
 # trzsz-ssh ( tssh ) - 支持 trzsz ( trz / tsz ) 的 ssh 客户端
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/)
-[![GitHub Release](https://img.shields.io/github/v/release/trzsz/trzsz-ssh)](https://github.com/trzsz/trzsz-ssh/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/trzsz/trzsz-ssh)](https://github.com/abakum/trzsz-ssh/releases)
 [![WebSite](https://img.shields.io/badge/WebSite-https%3A%2F%2Ftrzsz.github.io%2Fssh-blue?style=flat)](https://trzsz.github.io/ssh)
 [![中文文档](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-https%3A%2F%2Ftrzsz.github.io%2Fcn%2Fssh-blue?style=flat)](https://trzsz.github.io/cn/ssh)
 
@@ -121,10 +121,10 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 
 - 用 Go 直接安装（ 要求 go 1.21 以上 ）
 
-  <details><summary><code>go install github.com/trzsz/trzsz-ssh/cmd/tssh@latest</code></summary>
+  <details><summary><code>go install github.com/abakum/trzsz-ssh/cmd/tssh@latest</code></summary>
 
   ```sh
-  go install github.com/trzsz/trzsz-ssh/cmd/tssh@latest
+  go install github.com/abakum/trzsz-ssh/cmd/tssh@latest
   ```
 
   安装后，`tssh` 程序一般位于 `~/go/bin/` 目录下（ Windows 一般在 `C:\Users\your_name\go\bin\` ）。
@@ -136,7 +136,7 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
   <details><summary><code>sudo make install</code></summary>
 
   ```sh
-  git clone --depth 1 https://github.com/trzsz/trzsz-ssh.git
+  git clone --depth 1 https://github.com/abakum/trzsz-ssh.git
   cd trzsz-ssh
   make
   sudo make install
@@ -144,13 +144,13 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 
   </details>
 
-- 可从 [GitHub Releases](https://github.com/trzsz/trzsz-ssh/releases) 中下载，国内可从 [Gitee 发行版](https://gitee.com/trzsz/tssh/releases) 中下载，解压并加到 `PATH` 环境变量中。
+- 可从 [GitHub Releases](https://github.com/abakum/trzsz-ssh/releases) 中下载，国内可从 [Gitee 发行版](https://gitee.com/trzsz/tssh/releases) 中下载，解压并加到 `PATH` 环境变量中。
 
 ## 登录界面
 
 - 使用之前，需要配置好 `~/.ssh/config` ( Windows 是 `C:\Users\xxx\.ssh\config`, `xxx` 换成用户名 )。
 
-- 关于如何配置 `~/.ssh/config`，请参考 [openssh](https://manpages.debian.org/bookworm/openssh-client/ssh_config.5.en.html) ( 暂不支持 `Match` )，或参考 tssh wiki [SSH基本配置](https://github.com/trzsz/trzsz-ssh/wiki/SSH%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE)。
+- 关于如何配置 `~/.ssh/config`，请参考 [openssh](https://manpages.debian.org/bookworm/openssh-client/ssh_config.5.en.html) ( 暂不支持 `Match` )，或参考 tssh wiki [SSH基本配置](https://github.com/abakum/trzsz-ssh/wiki/SSH%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE)。
 
 - 直接无参数运行 `tssh` 命令就会打开登录界面，或者有除目标机器外的其他参数也会打开登录界面。
 
@@ -186,7 +186,7 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 
 - 每种主题风格都支持自定义颜色，在 `~/.tssh.conf` 中配置 `PromptThemeColors`，只要配置非默认的颜色即可。
 
-- 请为你喜欢的主题风格[❤️投票❤️](https://github.com/trzsz/trzsz-ssh/issues/75)，得票数最高的主题风格将会在下个版本被设置为默认主题。
+- 请为你喜欢的主题风格[❤️投票❤️](https://github.com/abakum/trzsz-ssh/issues/75)，得票数最高的主题风格将会在下个版本被设置为默认主题。
 
 ### tiny 小巧风
 
@@ -449,7 +449,7 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 
 ## 记住密码
 
-- 推荐使用公钥认证登录，可参考 openssh 的文档，或者参考 tssh wiki [公钥认证登录](https://github.com/trzsz/trzsz-ssh/wiki/%E5%85%AC%E9%92%A5%E8%AE%A4%E8%AF%81%E7%99%BB%E5%BD%95)。
+- 推荐使用公钥认证登录，可参考 openssh 的文档，或者参考 tssh wiki [公钥认证登录](https://github.com/abakum/trzsz-ssh/wiki/%E5%85%AC%E9%92%A5%E8%AE%A4%E8%AF%81%E7%99%BB%E5%BD%95)。
 
 - 如果只能使用密码登录，建议至少设置一下配置文件的权限，如：
 
@@ -712,7 +712,7 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 
 ## 联系方式
 
-有什么问题可以发邮件给作者 <lonnywong@qq.com>，也可以提 [Issues](https://github.com/trzsz/trzsz-ssh/issues) 。欢迎加入 QQ 群：318578930。
+有什么问题可以发邮件给作者 <lonnywong@qq.com>，也可以提 [Issues](https://github.com/abakum/trzsz-ssh/issues) 。欢迎加入 QQ 群：318578930。
 
 ## 赞助打赏
 

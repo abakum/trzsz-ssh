@@ -29,8 +29,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/abakum/trzsz-ssh/internal/table"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/trzsz/trzsz-ssh/internal/table"
 )
 
 type promptTheme struct {

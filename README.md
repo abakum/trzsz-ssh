@@ -1,7 +1,7 @@
 # trzsz-ssh ( tssh ) - an openssh client alternative
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://choosealicense.com/licenses/mit/)
-[![GitHub Release](https://img.shields.io/github/v/release/trzsz/trzsz-ssh)](https://github.com/trzsz/trzsz-ssh/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/trzsz/trzsz-ssh)](https://github.com/abakum/trzsz-ssh/releases)
 [![WebSite](https://img.shields.io/badge/WebSite-https%3A%2F%2Ftrzsz.github.io%2Fssh-blue?style=flat)](https://trzsz.github.io/ssh)
 [![中文文档](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-https%3A%2F%2Ftrzsz.github.io%2Fcn%2Fssh-blue?style=flat)](https://trzsz.github.io/cn/ssh)
 
@@ -145,10 +145,10 @@ trzsz-ssh ( tssh ) offers additional useful features:
 
 - Install with Go ( Requires go 1.21 or later )
 
-  <details><summary><code>go install github.com/trzsz/trzsz-ssh/cmd/tssh@latest</code></summary>
+  <details><summary><code>go install github.com/abakum/trzsz-ssh/cmd/tssh@latest</code></summary>
 
   ```sh
-  go install github.com/trzsz/trzsz-ssh/cmd/tssh@latest
+  go install github.com/abakum/trzsz-ssh/cmd/tssh@latest
   ```
 
   The binaries are usually located in ~/go/bin/ ( C:\Users\your_name\go\bin\ on Windows ).
@@ -160,7 +160,7 @@ trzsz-ssh ( tssh ) offers additional useful features:
   <details><summary><code>sudo make install</code></summary>
 
   ```sh
-  git clone --depth 1 https://github.com/trzsz/trzsz-ssh.git
+  git clone --depth 1 https://github.com/abakum/trzsz-ssh.git
   cd trzsz-ssh
   make
   sudo make install
@@ -168,13 +168,13 @@ trzsz-ssh ( tssh ) offers additional useful features:
 
   </details>
 
-- Download from the [GitHub Releases](https://github.com/trzsz/trzsz-ssh/releases), unzip and add to `PATH` environment.
+- Download from the [GitHub Releases](https://github.com/abakum/trzsz-ssh/releases), unzip and add to `PATH` environment.
 
 ## Contributing
 
 Welcome and thank you for considering contributing. We appreciate all forms of support, from coding and testing to documentation and CI/CD improvements.
 
-- Fork and clone the repository `https://github.com/trzsz/trzsz-ssh.git`.
+- Fork and clone the repository `https://github.com/abakum/trzsz-ssh.git`.
 
 - Make your changes just ensure that the unit tests `go test ./tssh` pass.
 
@@ -196,7 +196,7 @@ Welcome and thank you for considering contributing. We appreciate all forms of s
 
 ## Contact
 
-Feel free to email the author <lonnywong@qq.com>, or create an [issue](https://github.com/trzsz/trzsz-ssh/issues). Welcome to join the QQ group: 318578930.
+Feel free to email the author <lonnywong@qq.com>, or create an [issue](https://github.com/abakum/trzsz-ssh/issues). Welcome to join the QQ group: 318578930.
 
 ## Sponsor
 

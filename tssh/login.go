@@ -41,8 +41,8 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/abakum/knownhosts"
 	"github.com/alessio/shellescape"
-	"github.com/skeema/knownhosts"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/term"
 )
