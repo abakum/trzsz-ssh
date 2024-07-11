@@ -1,9 +1,12 @@
 module github.com/abakum/trzsz-ssh
 
-go 1.21
+go 1.21.3
+
+toolchain go1.21.4
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
+	github.com/abakum/knownhosts v1.2.3
 	github.com/alessio/shellescape v1.4.2
 	github.com/charmbracelet/bubbles v0.18.0
 	github.com/charmbracelet/bubbletea v0.26.6
@@ -15,7 +18,6 @@ require (
 	github.com/mattn/go-runewidth v0.0.15
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pquerna/otp v1.4.0
-	github.com/abakum/knownhosts v1.2.2
 	github.com/stretchr/testify v1.8.4
 	github.com/trzsz/go-arg v1.5.3
 	github.com/trzsz/go-socks5 v0.1.0

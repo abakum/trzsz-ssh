@@ -291,7 +291,7 @@ func addHostKey(path, host string, remote net.Addr, key ssh.PublicKey, ask bool)
 	return nil
 }
 
-func getHostKeyCallback(args *sshArgs, param *sshParam) (ssh.HostKeyCallback, knownhosts.HostKeyCallback, error) {
+func getHostKeyCallback(args *sshArgs, param *sshParam) (ssh.HostKeyCallback, *knownhosts.HostKeyDB, error) {
 	primaryPath := ""
 	var files []string
 	addKnownHostsFiles := func(key string, user bool) error {
@@ -342,12 +342,13 @@ func getHostKeyCallback(args *sshArgs, param *sshParam) (ssh.HostKeyCallback, kn
 		return nil, nil, err
 	}
 
-	kh, err := knownhosts.New(files...)
+	khDB, err := knownhosts.NewDB(files...)
 	if err != nil {
 		return nil, nil, fmt.Errorf("new knownhosts failed: %v", err)
 	}
 
 	cb := func(host string, remote net.Addr, key ssh.PublicKey) error {
+		kh := khDB.HostKeyCallback()
 		err := kh(host, remote, key)
 		if err == nil {
 			return nil
@@ -387,7 +388,7 @@ func getHostKeyCallback(args *sshArgs, param *sshParam) (ssh.HostKeyCallback, kn
 		}
 	}
 
-	return cb, kh, err
+	return cb, khDB, err
 }
 
 type sshSigner struct {
@@ -1007,6 +1008,7 @@ func sshConnect(args *sshArgs, client sshClient, proxy string) (sshClient, *sshP
 
 	authMethods := getAuthMethods(args, param)
 	cb, kh, err := getHostKeyCallback(args, param)
+	debug("kh.HostKeyAlgorithms(param.addr): %v param.addr: %v", kh.HostKeyAlgorithms(param.addr), param.addr)
 	if err != nil {
 		return nil, param, false, err
 	}
