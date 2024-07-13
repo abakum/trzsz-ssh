@@ -1,12 +1,10 @@
 module github.com/abakum/trzsz-ssh
 
-go 1.21.3
-
-toolchain go1.21.4
+go 1.21
 
 require (
 	github.com/Microsoft/go-winio v0.6.2
-	github.com/abakum/knownhosts v1.2.3
+	github.com/abakum/knownhosts v1.2.4-lw
 	github.com/alessio/shellescape v1.4.2
 	github.com/charmbracelet/bubbles v0.18.0
 	github.com/charmbracelet/bubbletea v0.26.6

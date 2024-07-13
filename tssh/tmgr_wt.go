@@ -68,7 +68,7 @@ func (m *wtMgr) execWt(alias string, args ...string) error {
 	keywordsMatched := false
 	for _, arg := range os.Args {
 		if strings.Contains(arg, ";") {
-			return fmt.Errorf("Windows Terminal does not support ';', use '|cat&&' instead.")
+			return fmt.Errorf("the Windows Terminal does not support ';', use '|cat&&' instead")
 		}
 		if m.keywords != "" && arg == m.keywords {
 			if keywordsMatched {

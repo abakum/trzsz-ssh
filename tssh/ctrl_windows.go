@@ -28,7 +28,7 @@ import (
 	"strings"
 )
 
-func connectViaControl(args *sshArgs, param *sshParam) SshClient {
+func connectViaControl(args *sshArgs, _ *sshParam) SshClient {
 	ctrlMaster := getOptionConfig(args, "ControlMaster")
 	ctrlPath := getOptionConfig(args, "ControlPath")
 

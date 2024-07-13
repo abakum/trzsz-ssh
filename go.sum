@@ -6,6 +6,8 @@ github.com/UserExistsError/conpty v0.1.3 h1:YzGQkHAiBBkAihOCO5J2cAnahzb8ePvje2Yx
 github.com/UserExistsError/conpty v0.1.3/go.mod h1:PDglKIkX3O/2xVk0MV9a6bCWxRmPVfxqZoTG/5sSd9I=
 github.com/abakum/knownhosts v1.2.3 h1:5pK12YUJBgrBOWB2rYMsDT3ju0DpZvqsBJjm/8N+FhY=
 github.com/abakum/knownhosts v1.2.3/go.mod h1:9VEWi+LLF+3QWf+RPA6UiGx0deSavya2UwyxzFZKy7c=
+github.com/abakum/knownhosts v1.2.4-lw h1:h0u7d5hObI3I3Y/3PU4C8S0ah/L/WAsrPrYiNi1OVQk=
+github.com/abakum/knownhosts v1.2.4-lw/go.mod h1:Zirck6JrE8AiPUx0Wp1AI7ASEtB+6PKPWiX6rvXpogI=
 github.com/akavel/rsrc v0.10.2 h1:Zxm8V5eI1hW4gGaYsJQUhxpjkENuG91ki8B4zCrvEsw=
 github.com/akavel/rsrc v0.10.2/go.mod h1:uLoCtb9J+EyAqh+26kdrTgmzRBFPGOolLWKpdxkKq+c=
 github.com/alessio/shellescape v1.4.2 h1:MHPfaU+ddJ0/bYWpgIeUnQUqKrlJ1S7BfEYPM4uEoM0=

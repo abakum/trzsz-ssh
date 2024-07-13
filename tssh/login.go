@@ -217,7 +217,7 @@ func ensureNewline(file *os.File) error {
 	return nil
 }
 
-func writeKnownHost(path, host string, remote net.Addr, key ssh.PublicKey) error {
+func writeKnownHost(path, host string, _ net.Addr, key ssh.PublicKey) error {
 	file, err := os.OpenFile(path, os.O_CREATE|os.O_RDWR|os.O_APPEND, 0600)
 	if err != nil {
 		return err
