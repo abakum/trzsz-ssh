@@ -993,7 +993,7 @@ func getNetworkAddressFamily(args *sshArgs) string {
 	}
 }
 
-func sshConnect(args *sshArgs, client sshClient, proxy string) (sshClient, *sshParam, bool, error) {
+func sshConnect(args *sshArgs, client SshClient, proxy string) (SshClient, *sshParam, bool, error) {
 	param, err := getSshParam(args)
 	if err != nil {
 		return nil, nil, false, err
@@ -1030,7 +1030,7 @@ func sshConnect(args *sshArgs, client sshClient, proxy string) (sshClient, *sshP
 
 	network := getNetworkAddressFamily(args)
 
-	proxyConnect := func(client sshClient, proxy string) (sshClient, *sshParam, bool, error) {
+	proxyConnect := func(client SshClient, proxy string) (SshClient, *sshParam, bool, error) {
 		debug("login to [%s], addr: %s", args.Destination, param.addr)
 		conn, err := client.DialTimeout(network, param.addr, 10*time.Second)
 		if err != nil {
@@ -1080,7 +1080,7 @@ func sshConnect(args *sshArgs, client sshClient, proxy string) (sshClient, *sshP
 	}
 
 	// has proxies
-	var proxyClient sshClient
+	var proxyClient SshClient
 	for _, proxy = range param.proxy {
 		proxyClient, _, _, err = sshConnect(&sshArgs{Destination: proxy}, proxyClient, proxy)
 		if err != nil {
@@ -1090,7 +1090,7 @@ func sshConnect(args *sshArgs, client sshClient, proxy string) (sshClient, *sshP
 	return proxyConnect(proxyClient, proxy)
 }
 
-func keepAlive(client sshClient, args *sshArgs) {
+func keepAlive(client SshClient, args *sshArgs) {
 	getOptionValue := func(option string) int {
 		value, err := strconv.Atoi(getOptionConfig(args, option))
 		if err != nil {
@@ -1131,7 +1131,7 @@ func keepAlive(client sshClient, args *sshArgs) {
 	}()
 }
 
-func sshAgentForward(args *sshArgs, param *sshParam, client sshClient, session sshSession) {
+func sshAgentForward(args *sshArgs, param *sshParam, client SshClient, session SshSession) {
 	if args.NoForwardAgent || !args.ForwardAgent && strings.ToLower(getOptionConfig(args, "ForwardAgent")) != "yes" {
 		return
 	}
@@ -1155,7 +1155,7 @@ func sshAgentForward(args *sshArgs, param *sshParam, client sshClient, session s
 	debug("request ssh agent forwarding success")
 }
 
-func sshTcpLogin(args *sshArgs) (ss *sshClientSession, param *sshParam, udpMode int, err error) {
+func sshTcpLogin(args *sshArgs) (ss *sshClientSession, udpMode int, err error) {
 	ss = &sshClientSession{}
 	defer func() {
 		if err != nil {
@@ -1163,13 +1163,13 @@ func sshTcpLogin(args *sshArgs) (ss *sshClientSession, param *sshParam, udpMode 
 		} else {
 			sshLoginSuccess.Store(true)
 			// execute local command if necessary
-			execLocalCommand(args, param)
+			execLocalCommand(args, ss.param)
 		}
 	}()
 
 	// ssh login
 	var control bool
-	ss.client, param, control, err = sshConnect(args, nil, "")
+	ss.client, ss.param, control, err = sshConnect(args, nil, "")
 	if err != nil {
 		return
 	}
@@ -1178,7 +1178,7 @@ func sshTcpLogin(args *sshArgs) (ss *sshClientSession, param *sshParam, udpMode 
 	udpMode = getUdpMode(args)
 
 	// parse cmd and tty
-	ss.cmd, ss.tty, err = parseCmdAndTTY(args, param)
+	ss.cmd, ss.tty, err = parseCmdAndTTY(args, ss.param)
 	if err != nil {
 		return
 	}
@@ -1196,7 +1196,7 @@ func sshTcpLogin(args *sshArgs) (ss *sshClientSession, param *sshParam, udpMode 
 
 	// ssh port forwarding
 	if !control && udpMode == kUdpModeNo {
-		if err = sshForward(ss.client, args, param); err != nil {
+		if err = sshForward(ss.client, args, ss.param); err != nil {
 			return
 		}
 	}
@@ -1233,7 +1233,7 @@ func sshTcpLogin(args *sshArgs) (ss *sshClientSession, param *sshParam, udpMode 
 
 	if !control && udpMode == kUdpModeNo {
 		// ssh agent forward
-		sshAgentForward(args, param, ss.client, ss.session)
+		sshAgentForward(args, ss.param, ss.client, ss.session)
 		// x11 forward
 		sshX11Forward(args, ss.client, ss.session)
 	}
@@ -1242,20 +1242,20 @@ func sshTcpLogin(args *sshArgs) (ss *sshClientSession, param *sshParam, udpMode 
 }
 
 func sshLogin(args *sshArgs) (*sshClientSession, error) {
-	ss, param, udpMode, err := sshTcpLogin(args)
+	ss, udpMode, err := sshTcpLogin(args)
 	if err != nil {
 		return nil, err
 	}
 
 	if udpMode != kUdpModeNo {
-		ss, err = sshUdpLogin(args, param, ss, udpMode)
+		ss, err = sshUdpLogin(args, ss, udpMode)
 		if err != nil {
 			return nil, err
 		}
 
 		// ssh port forwarding if not running as a proxy ( aka: not stdio forward ).
 		if args.StdioForward == "" {
-			if err := sshForward(ss.client, args, param); err != nil {
+			if err := sshForward(ss.client, args, ss.param); err != nil {
 				ss.Close()
 				return nil, err
 			}
@@ -1265,7 +1265,7 @@ func sshLogin(args *sshArgs) (*sshClientSession, error) {
 		// if not running as a proxy ( aka: not stdio forward ) and executing remote command
 		if args.StdioForward == "" && !args.NoCommand {
 			// ssh agent forward
-			sshAgentForward(args, param, ss.client, ss.session)
+			sshAgentForward(args, ss.param, ss.client, ss.session)
 			// x11 forward
 			sshX11Forward(args, ss.client, ss.session)
 		}

@@ -696,7 +696,17 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 
   - 软链后，`ssh -V` 应输出 `trzsz ssh` 加版本号，如果不是，说明软链不成功，或者在 `PATH` 中 `openssh` 的优先级更高，你要软链到另一个地方或者调整 `PATH` 的优先级。
 
-  - 软链后，要直接使用 `ssh`，它等价于 `tssh`。如果还是用 `tssh` 是不会支持分块 Blocks 功能的。
+  - 为了让 `tssh` 搜索登录也支持分块 Blocks 功能，需要在 `~/.bash_profile` ( bash ) 或 `~/.zshrc` ( zsh ) 中建一个 `tssh` 函数：
+
+    ```sh
+    tssh() {
+        if [ $# -eq 0 ]; then
+            ssh FAKE_DEST_IN_WARP
+        else
+            ssh "$@"
+        fi
+    }
+    ```
 
   - `--dragfile` 参数可能会让 Warp 分块功能失效，请参考前文配置 `EnableDragFile` 来启用拖拽功能。
 
@@ -705,6 +715,8 @@ trzsz-ssh ( tssh ) 设计为 ssh 客户端的直接替代品，提供与 openssh
 - 如果你在使用 Windows7 或者旧版本的 Windows10 等，遇到 `enable virtual terminal failed` 的错误。
 
   - 可以尝试在 [Cygwin](https://www.cygwin.com/)、[MSYS2](https://www.msys2.org/) 或 [Git Bash](https://www.atlassian.com/git/tutorials/git-bash) 内使用 `tssh`。
+
+  - 从 `v0.1.21` 起，默认的 Windows 版本不再支持 Windows7，需要在 [Releases](https://github.com/trzsz/trzsz-ssh/releases) 中下载带有 `win7` 关键字的版本来使用。
 
 - 如果在 `~/.ssh/config` 中配置了 `tssh` 特有的配置项后，标准 `ssh` 报错 `Bad configuration option`。
 
